@@ -1,17 +1,139 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
+<html lang="zh">
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <!-- <script>
+      window.addEventListener('load', function() {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./sw.js').then((res) => {
+            console.log('serviceWorker', res)
+            // 获取通知权限
+            let promiseChain = new Promise((resolve, reject) => {
+                return Notification.requestPermission(result => resolve(result));
+            }).then(result => {
+                if (result === 'granted') {
+                    // 有权限就直接执行，弹出通知
+                  // res.showNotification('你可以安装');
+                } else {
+                    console.log('no permission');
+                }
+            })
+          });
+          console.log(navigator.serviceWorker)
+        }
+        let appPromptEvent = null;
+        const installBtn = document.getElementById('installBtn');
+        window.addEventListener('beforeinstallprompt', function(event) {
+          console.log('触发事件：beforeinstallprompt', event);
+          document.title = 'vue3'
+          event.preventDefault();
+          appPromptEvent = event;
+          installBtn.hidden = false;
+          return false;
+        });
+        installBtn.addEventListener('click', function() {
+          console.log('1111', appPromptEvent)
+          if (appPromptEvent !== null) {
+            appPromptEvent.prompt();
+            appPromptEvent.userChoice.then(function(result) {
+              if (result.outcome === 'accepted') {
+                console.log('同意安装应用');
+              } else {
+                console.log('不同意安装应用');
+              }
+              appPromptEvent = null;
+            });
+          }
+        });
+        window.addEventListener('appinstalled', function() {
+          console.log('应用已安装');
+          installBtn.hidden = true;
+        });
+      });
+    </script>
+    <button hidden id="installBtn">安装应用</button>
+    <p>
+      <button id="login-btn" data-provider="https://www.baidu.com">百度登录</button>
+    </p>
+    <script>
+      let $btn = document.getElementById('login-btn');
+
+      $btn.addEventListener('click', function () {
+          let provider = this.dataset.provider;
+          // 假装 fetch('./third-party.json') 是调用百度第三方登录的过程
+          fetch('./third-party.json')
+          .then(res => {
+              if (res.status === 200) {
+                  return res.json();
+              }
+
+              return Promise.reject(res.status);
+          })
+          .then(data => {
+              if (navigator.credentials) {
+                  let cred = new FederatedCredential({
+                      id: data.uid,
+                      provider: provider,
+                      name: data.name,
+                      iconURL: data.icon
+                  });
+                  return navigator.credentials.store(cred)
+                      .then(() => {
+                          return data;
+                      });
+              }
+
+              return Promise.resolve(data);
+          })
+          .then(data => {
+              window.location.href = './main.html?from=third-party&username=' + data.name;
+          });
+      });
+
+      if (navigator.credentials) {
+          navigator.credentials.get({
+              password: true,
+              federated: {
+                  providers: ['https://www.baidu.com']
+              }
+          })
+          .then(cred => {
+              if (cred) {
+                  switch (cred.type) {
+                      case 'federated':
+                          // FederatedCredential 凭证处理
+                          switch (cred.provider) {
+                              case 'https://www.baidu.com':
+                                  // 调起百度第三方登录
+                                  window.location.href = './main.html?from=third-party&username=' + cred.name;
+                          }
+                  }
+              }
+          });
+      }
+      else {
+          let $tips = document.getElementById('tips');
+          $tips.style.display = 'block';
+      }
+  </script> -->
+    <div id="app">
+
+    </div>
     <!-- built files will be auto injected -->
-  </body>
+</body>
+
 </html>

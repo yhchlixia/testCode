@@ -28,6 +28,16 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+  <div class="cla">
+    <div class="yellow">123</div>
+  </div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
+  <div class="cla">123</div>
 </template>
 
 <script>
@@ -38,6 +48,14 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.cla {
+  color: red;
+  .yellow {
+    color: yellow;
+  }
+}
+</style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
