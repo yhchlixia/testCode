@@ -4,6 +4,7 @@
     <div @click="tobaidu">dakai</div>
     <div v-html="message"></div>
     <a href="" target=""></a>
+    <div>这又是啥</div>
   </div>
   <div class="table">table</div>
   <div>
